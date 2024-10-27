@@ -11,10 +11,13 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 
 @Data
 @Entity
+@Builder
 public class Brand {
     
     @Id
