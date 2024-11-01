@@ -1,7 +1,6 @@
 package tpi.backend.e_commerce.dto.ProductDTO;
 
 import org.hibernate.validator.constraints.URL;
-
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
