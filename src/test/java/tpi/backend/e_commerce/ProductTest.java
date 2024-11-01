@@ -19,7 +19,7 @@ import tpi.backend.e_commerce.dto.ProductDTO.CreateProductDTO;
 @SpringBootTest
 @AutoConfigureMockMvc
 public class ProductTest {
-//prueba commit
+
         @Autowired
         private MockMvc mockMvc;
 
