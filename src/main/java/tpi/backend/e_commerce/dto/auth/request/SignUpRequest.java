@@ -36,4 +36,6 @@ public class SignUpRequest {
     @Size(min = 8, max = 22, message = "Debe tener entre 8 y 22 caracteres")
     private String password;
 
+    private boolean isAdmin;
+
 }
