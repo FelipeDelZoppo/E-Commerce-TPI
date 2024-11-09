@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -36,6 +37,10 @@ public class SignUpRequest {
     @Size(min = 8, max = 22, message = "Debe tener entre 8 y 22 caracteres")
     private String password;
 
-    private boolean isAdmin;
+    @NotNull
+    private String jwt;
+
+    @NotNull
+    private boolean admin;
 
 }
