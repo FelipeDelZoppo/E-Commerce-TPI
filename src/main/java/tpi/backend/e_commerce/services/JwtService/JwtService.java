@@ -29,6 +29,11 @@ public class JwtService implements IJwtService {
     }
 
     @Override
+    public Role extractRole(String token) {
+        return extractClaim(token, claims -> Role.valueOf(claims.get("Role", String.class)));
+    }
+
+    @Override
     public String generateToken(UserDetails userDetails, Role role) {
         Map<String, Object> extraClaims = new HashMap<>();
         extraClaims.put("Role", role);
