@@ -28,14 +28,14 @@ public class UserMapper {
             .build();
     }
     
-    public static User toEntity(SignUpRequest userDto, String password, Role role){
+    public static User toEntity(SignUpRequest userDto, String password){
         return User
             .builder()
             .firstName(userDto.getFirstName())
             .lastName(userDto.getLastName())
             .email(userDto.getEmail())
             .password(password)
-            .role(role)
+            .role(userDto.isAdmin() ? Role.ADMIN : Role.USER)
             .dateBirth(userDto.getDateBirth())
             .build();
     }
