@@ -39,7 +39,8 @@ public class AuthenticationController {
         return authenticationService.signin(request,result);
     }
 
-    @PostMapping("/admin")
+    //Este endpoint sera utilizado para registrar el primer ADMIN en la BD (hardcodeo)
+    @PostMapping("/firstAdmin")
     public ResponseEntity<?> signUpAdmin(@Valid @RequestBody SignUpRequest userDto, BindingResult result){
         return saveService.signUpAdmin(userDto, result);
     }

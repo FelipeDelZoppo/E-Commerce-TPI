@@ -47,9 +47,10 @@ public class SaveUserService implements ISaveUserService{
         }
 
         // Si no hay errores, guarda al usuario en la BD y retorna el JWT
-        User user = UserMapper.toEntity(userDto, passwordEncoder.encode(userDto.getPassword()), Role.ADMIN);
+        User user = UserMapper.toEntity(userDto, passwordEncoder.encode(userDto.getPassword()));
+        user.setRole(Role.ADMIN); //HARDACODEADO, este endpoint se usara para probar la app
         userRepository.save(user);
-        String jwt = jwtService.generateToken(user);
+        String jwt = jwtService.generateToken(user, user.getRole());
         return ResponseEntity.ok(UserMapper.toJwtDto(user, jwt));
     }
 }
