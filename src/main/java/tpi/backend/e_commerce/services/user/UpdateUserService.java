@@ -1,4 +1,4 @@
-package tpi.backend.e_commerce.services.JwtService;
+package tpi.backend.e_commerce.services.user;
 
 import java.util.Optional;
 

@@ -2,6 +2,7 @@ package tpi.backend.e_commerce.services.JwtService;
 
 import java.util.Optional;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -32,7 +33,7 @@ public class AuthenticationService implements IAuthenticationService {
     private final Validation validation;
 
     @Override
-    public ResponseEntity<?> signup(SignUpRequest request, BindingResult result) {
+    public ResponseEntity<?> signup(SignUpRequest request, BindingResult result, String authorization) {
 
         // Si hay algun error de validacion, retornara un 400 con los errores
         if (result.hasFieldErrors()) {
@@ -49,12 +50,22 @@ public class AuthenticationService implements IAuthenticationService {
 
         //Si se quiere registrar a un ADMIN, se valida que el JWT enviado sea de un ADMIN
         if (request.isAdmin()) {
+            //Este if evita un nullPointerException si Authorization esta vacio o no tiene el formato correcto
+            if (StringUtils.isEmpty(authorization) || !StringUtils.startsWith(authorization, "Bearer ")) {
+                return validation.validate(
+                    "Authorization",
+                    "Se requiere un JWT valido.",
+                    403  
+                  );
+            }   
+            
+            String requestJwt = authorization.replace("Bearer ", "");
             try {
-                validation.validateRole(request.getJwt());
+                validation.validateRole(requestJwt);
             } catch (Exception e) {
                 return validation.validate(
-                  "jwt",
-                  "Solo los usuarios ADMIN pueden registrar otros ADMIN",
+                  "Authorization",
+                  "Se requiere un JWT valido.",
                   403  
                 );
             }
@@ -63,8 +74,8 @@ public class AuthenticationService implements IAuthenticationService {
         // Si no hay errores, guarda al usuario en la BD y retorna el JWT
         User user = UserMapper.toEntity(request, passwordEncoder.encode(request.getPassword()));
         userRepository.save(user);
-        String jwt = jwtService.generateToken(user, user.getRole());
-        return ResponseEntity.ok(UserMapper.toJwtDto(user, jwt));
+        String responseJwt = jwtService.generateToken(user, user.getRole());
+        return ResponseEntity.ok(UserMapper.toJwtDto(user, responseJwt));
     }
 
     @Override

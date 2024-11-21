@@ -66,7 +66,7 @@ public class Test6DontAceptDuplicateEmail {
                         .body(Collections.singletonMap("email", "Ya existe un usuario con ese email")));
 
         // Llamar al servicio de autenticación
-        ResponseEntity<?> response = authenticationService.signup(request, result);
+        ResponseEntity<?> response = authenticationService.signup(request, result,"");
 
         // Verificar que el estado HTTP sea 409 CONFLICT
         assertEquals(HttpStatus.CONFLICT, response.getStatusCode(), "Correo ya registrado");
@@ -94,7 +94,7 @@ public class Test6DontAceptDuplicateEmail {
         when(userRepository.existsByEmail("test@example.com")).thenReturn(false);
 
         // Llamar al servicio de autenticación
-        ResponseEntity<?> response = authenticationService.signup(request, result);
+        ResponseEntity<?> response = authenticationService.signup(request, result,"");
 
         // Verificar que el estado HTTP sea 200 OK 
         assertEquals(HttpStatus.OK, response.getStatusCode(), "Correo válido");
