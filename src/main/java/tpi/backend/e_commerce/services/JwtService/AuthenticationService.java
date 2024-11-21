@@ -2,6 +2,7 @@ package tpi.backend.e_commerce.services.JwtService;
 
 import java.util.Optional;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -49,6 +50,15 @@ public class AuthenticationService implements IAuthenticationService {
 
         //Si se quiere registrar a un ADMIN, se valida que el JWT enviado sea de un ADMIN
         if (request.isAdmin()) {
+            //Este if evita un nullPointerException si Authorization esta vacio o no tiene el formato correcto
+            if (StringUtils.isEmpty(authorization) || !StringUtils.startsWith(authorization, "Bearer ")) {
+                return validation.validate(
+                    "Authorization",
+                    "Se requiere un JWT valido.",
+                    403  
+                  );
+            }   
+            
             String requestJwt = authorization.replace("Bearer ", "");
             try {
                 validation.validateRole(requestJwt);
