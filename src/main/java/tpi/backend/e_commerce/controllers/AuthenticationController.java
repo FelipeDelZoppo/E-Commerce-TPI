@@ -6,6 +6,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,8 +30,10 @@ public class AuthenticationController {
 
     //Endpoint para registrar un usuario
     @PostMapping("/signup")
-    public ResponseEntity<?> signup(@Valid @RequestBody SignUpRequest request, BindingResult result) {
-        return authenticationService.signup(request,result);
+    public ResponseEntity<?> signup(
+        @Valid @RequestBody SignUpRequest request, BindingResult result, @RequestHeader("Authorization") String authorization
+        ) {
+        return authenticationService.signup(request,result,authorization);
     }   
 
     //Endpoint para autenticar al usuario en el inicio de sesion

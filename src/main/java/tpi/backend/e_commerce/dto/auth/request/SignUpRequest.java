@@ -38,9 +38,6 @@ public class SignUpRequest {
     private String password;
 
     @NotNull
-    private String jwt;
-
-    @NotNull
     private boolean admin;
 
 }
