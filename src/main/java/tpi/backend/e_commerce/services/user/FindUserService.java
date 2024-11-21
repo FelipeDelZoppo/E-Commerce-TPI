@@ -1,4 +1,4 @@
-package tpi.backend.e_commerce.services.JwtService;
+package tpi.backend.e_commerce.services.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

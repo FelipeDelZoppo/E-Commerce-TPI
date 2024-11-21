@@ -20,7 +20,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import tpi.backend.e_commerce.services.JwtService.JwtService;
-import tpi.backend.e_commerce.services.JwtService.UserService;
+import tpi.backend.e_commerce.services.user.UserService;
+
 import org.slf4j.Logger;
 
 @Component

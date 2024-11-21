@@ -17,7 +17,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import lombok.RequiredArgsConstructor;
-import tpi.backend.e_commerce.services.JwtService.UserService;
+import tpi.backend.e_commerce.services.user.UserService;
 
 @Configuration
 @EnableWebSecurity
