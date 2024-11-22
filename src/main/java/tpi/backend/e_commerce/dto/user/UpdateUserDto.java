@@ -1,4 +1,4 @@
-package tpi.backend.e_commerce.dto.auth.request;
+package tpi.backend.e_commerce.dto.user;
 
 import java.time.LocalDate;
 

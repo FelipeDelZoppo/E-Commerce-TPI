@@ -3,7 +3,7 @@ package tpi.backend.e_commerce.services.user.interfaces;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 
-import tpi.backend.e_commerce.dto.auth.request.UpdateUserDto;
+import tpi.backend.e_commerce.dto.user.UpdateUserDto;
 
 
 public interface IUpdateUserService {

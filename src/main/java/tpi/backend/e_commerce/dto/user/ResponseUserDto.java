@@ -1,4 +1,4 @@
-package tpi.backend.e_commerce.dto.auth.response;
+package tpi.backend.e_commerce.dto.user;
 
 import tpi.backend.e_commerce.enums.Role;
 

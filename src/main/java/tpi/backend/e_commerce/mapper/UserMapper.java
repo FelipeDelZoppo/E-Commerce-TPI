@@ -4,9 +4,9 @@ package tpi.backend.e_commerce.mapper;
 import java.util.List;
 
 import tpi.backend.e_commerce.dto.auth.request.SignUpRequest;
-import tpi.backend.e_commerce.dto.auth.request.UpdateUserDto;
 import tpi.backend.e_commerce.dto.auth.response.JwtAuthenticationResponse;
-import tpi.backend.e_commerce.dto.auth.response.ResponseUserDto;
+import tpi.backend.e_commerce.dto.user.ResponseUserDto;
+import tpi.backend.e_commerce.dto.user.UpdateUserDto;
 import tpi.backend.e_commerce.enums.Role;
 import tpi.backend.e_commerce.models.User;
 
