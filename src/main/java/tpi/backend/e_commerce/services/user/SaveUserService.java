@@ -14,7 +14,7 @@ import tpi.backend.e_commerce.mapper.UserMapper;
 import tpi.backend.e_commerce.models.User;
 import tpi.backend.e_commerce.repositories.IUserRepository;
 import tpi.backend.e_commerce.services.JwtService.JwtService;
-import tpi.backend.e_commerce.services.JwtService.interfaces.ISaveUserService;
+import tpi.backend.e_commerce.services.user.interfaces.ISaveUserService;
 import tpi.backend.e_commerce.validation.Validation;
 
 @Service

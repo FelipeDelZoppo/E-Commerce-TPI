@@ -1,4 +1,4 @@
-package tpi.backend.e_commerce.services.JwtService.interfaces;
+package tpi.backend.e_commerce.services.user.interfaces;
 
 import org.springframework.http.ResponseEntity;
 

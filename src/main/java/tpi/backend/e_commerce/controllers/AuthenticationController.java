@@ -15,7 +15,7 @@ import tpi.backend.e_commerce.dto.auth.request.SignInRequest;
 import tpi.backend.e_commerce.dto.auth.request.SignUpRequest;
 
 import tpi.backend.e_commerce.services.JwtService.interfaces.IAuthenticationService;
-import tpi.backend.e_commerce.services.JwtService.interfaces.ISaveUserService;
+import tpi.backend.e_commerce.services.user.interfaces.ISaveUserService;
 
 @RestController
 @RequestMapping("/auth")

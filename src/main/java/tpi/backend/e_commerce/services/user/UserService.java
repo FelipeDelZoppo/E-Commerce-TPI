@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import tpi.backend.e_commerce.repositories.IUserRepository;
-import tpi.backend.e_commerce.services.JwtService.interfaces.IUserService;
+import tpi.backend.e_commerce.services.user.interfaces.IUserService;
 
 @Service
 @RequiredArgsConstructor
