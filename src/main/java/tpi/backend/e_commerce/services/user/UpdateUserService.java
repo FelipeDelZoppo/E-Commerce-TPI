@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
+import tpi.backend.e_commerce.dto.user.UpdatePasswordDto;
 import tpi.backend.e_commerce.dto.user.UpdateUserDto;
 import tpi.backend.e_commerce.mapper.UserMapper;
 import tpi.backend.e_commerce.models.User;
@@ -40,6 +41,12 @@ public class UpdateUserService implements IUpdateUserService{
 
         User userToSave = UserMapper.toUpdateEntity(userDto, optionalUser.get());
         return ResponseEntity.ok(UserMapper.toDto(userRepository.save(userToSave)));
+    }
+
+    @Override
+    public ResponseEntity<?> updatePassword(String email, UpdatePasswordDto passwordDto, BindingResult result) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'updatePassword'");
     }
     
 }

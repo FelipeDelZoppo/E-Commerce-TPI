@@ -6,6 +6,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -14,7 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
-import tpi.backend.e_commerce.dto.auth.request.UpdateUserDto;
+import tpi.backend.e_commerce.dto.user.UpdatePasswordDto;
+import tpi.backend.e_commerce.dto.user.UpdateUserDto;
 import tpi.backend.e_commerce.services.user.interfaces.IDeleteUserService;
 import tpi.backend.e_commerce.services.user.interfaces.IFindUserService;
 import tpi.backend.e_commerce.services.user.interfaces.IUpdateUserService;
@@ -62,4 +64,9 @@ public class UserController {
     public ResponseEntity<?> update(@Valid @RequestBody UpdateUserDto userDto, BindingResult result, @PathVariable Long id){
         return updateService.update(id, userDto, result);
     }    
+
+    @PatchMapping("/update-password/{email}")
+    public ResponseEntity<?> updatePassword(@Valid @RequestBody UpdatePasswordDto passwordDto, BindingResult result, @PathVariable String email){
+        return updateService.updatePassword(email, passwordDto, result);
+    }
 }
