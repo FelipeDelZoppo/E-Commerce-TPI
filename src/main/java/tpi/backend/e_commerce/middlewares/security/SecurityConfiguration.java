@@ -37,7 +37,7 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.GET,"/product", "/brand", "/category",
                                 "/subcategory","/orders/*").permitAll()
                         .requestMatchers("/user/**" , "/product/**", "/brand/**", "/category/**",
-                                "/subcategory/**","/orders", "/stock-entry/**")
+                                "/subcategory/**","/orders/**","/stock-entry/**")
                         .hasRole("ADMIN")
                         .anyRequest()
                         .authenticated())

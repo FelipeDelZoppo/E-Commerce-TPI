@@ -31,7 +31,7 @@ public class AuthenticationController {
     //Endpoint para registrar un usuario
     @PostMapping("/signup")
     public ResponseEntity<?> signup(
-        @Valid @RequestBody SignUpRequest request, BindingResult result, @RequestHeader("Authorization") String authorization
+        @Valid @RequestBody SignUpRequest request, BindingResult result, @RequestHeader(value = "Authorization", required = false) String authorization
         ) {
         return authenticationService.signup(request,result,authorization);
     }   
