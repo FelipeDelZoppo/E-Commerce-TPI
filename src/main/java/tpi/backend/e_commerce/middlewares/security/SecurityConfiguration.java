@@ -31,13 +31,12 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/auth/**","/email/**","/v1/api-docs", "/swagger-resources/**",
-                                "/swagger-ui/**", "/v3/api-docs/**",
-                                "/swagger-ui.html").permitAll()
+                        .requestMatchers("/auth/**","/email/**","/v1/api-docs", "/swagger-resources/**", "/user/**" ,"/orders",
+                                "/swagger-ui/**", "/v3/api-docs/**", "/github/issues").permitAll()
                         .requestMatchers(HttpMethod.GET,"/product", "/brand", "/category",
                                 "/subcategory","/orders/*").permitAll()
-                        .requestMatchers("/user/**" , "/product/**", "/brand/**", "/category/**",
-                                "/subcategory/**","/orders", "/stock-entry/**")
+                        .requestMatchers( "/product/**", "/brand/**", "/category/**",
+                                "/subcategory/**", "/stock-entry/**")
                         .hasRole("ADMIN")
                         .anyRequest()
                         .authenticated())
