@@ -74,8 +74,17 @@ public class SaveOrderService implements ISaveOrderService{
 
         //Guardo la orden en la bd asignada a un usuario
         Order order = orderRepository.save(OrderMapper.toEntity(optionalUser.get()));
+        Order orderToSave;
 
-        Order orderToSave = createOrderDetails(orderDto.getOrderDetails(), order);
+        try {
+            orderToSave = createOrderDetails(orderDto.getOrderDetails(), order);
+        } catch (RuntimeException e) {
+            return validation.validate(
+                "amount",
+                e.getMessage(),
+                409
+            );
+        }
 
         return ResponseEntity.status(HttpStatus.CREATED).body(OrderMapper.toDto(orderRepository.save(orderToSave)));
 
