@@ -28,7 +28,7 @@ public class Test2ProductNameWithoutEndSpaces {
     @Test
     void testPreCreateTrimsNameSamsungGalaxyS22() {
         // Asignar el nombre con espacios al inicio y final
-        product.setName("Samsung Galaxy S22  ");
+        product.setName("Samsung Galaxy S22 ");
 
         // Invocar el método preCreate para que se aplique el recorte
         product.preCreate();
@@ -38,16 +38,40 @@ public class Test2ProductNameWithoutEndSpaces {
     }
 
     @Test
+    void testPreCreateTrimsNameIphone15() {
+        // Asignar el nombre con espacios al inicio y final
+        product.setName("Iphone 15 ");
+
+        // Invocar el método preCreate para que se aplique el recorte
+        product.preCreate();
+
+        // Verificar que el nombre ha sido recortado correctamente
+        assertEquals("Iphone 15", product.getName());
+    }
+
+    @Test
     void testPreCreateTrimsNameSamsungGalaxyS24() {
         // Asignar el nombre sin espacios adicionales
         product.setName("Samsung Galaxy S24");
 
-        // Invocar el método preCreate para verificar que no cambia un nombre sin espacios
+        // Invocar el método preCreate para verificar que no cambia un nombre sin
+        // espacios
         product.preCreate();
 
         // Verificar que el nombre permanece sin cambio
         assertEquals("Samsung Galaxy S24", product.getName());
     }
 
-   
+    @Test
+    void testPreCreateTrimsNameIphone14pro() {
+        // Asignar el nombre con espacios al inicio y final
+        product.setName("Iphone 15 ");
+
+        // Invocar el método preCreate para que se aplique el recorte
+        product.preCreate();
+
+        // Verificar que el nombre ha sido recortado correctamente
+        assertEquals("Iphone 15", product.getName());
+    }
+
 }
