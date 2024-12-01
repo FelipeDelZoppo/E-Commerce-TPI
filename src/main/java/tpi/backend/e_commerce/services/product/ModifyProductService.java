@@ -11,7 +11,7 @@ public class ModifyProductService implements IModifyProductService {
     @Override
     public Product discountStock(Product product, Integer discount) {
         if (product.getStock() < discount) {
-            throw new IllegalArgumentException("Stock insuficiente");
+            throw new RuntimeException("No hay suficiente stock del producto con id " + product.getId());
         }
         product.setStock(product.getStock() - discount);
         return product;

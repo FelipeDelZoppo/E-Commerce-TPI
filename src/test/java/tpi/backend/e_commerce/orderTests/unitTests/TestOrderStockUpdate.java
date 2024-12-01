@@ -38,9 +38,9 @@ public class TestOrderStockUpdate {
 
     @Test
     void testStockDiscountError() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+        Exception exception = assertThrows(RuntimeException.class, () -> {
             modifyProductService.discountStock(product, 15);
         });
-        assertEquals("Stock insuficiente", exception.getMessage());
+        assertEquals("No hay suficiente stock del producto con id " + product.getId(), exception.getMessage());
     }
 }
