@@ -1,14 +1,13 @@
 package tpi.backend.e_commerce.orderTests.unitTests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-
-
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
+
 import tpi.backend.e_commerce.models.Product;
 import tpi.backend.e_commerce.services.product.ModifyProductService;
 
@@ -35,5 +34,13 @@ public class TestOrderStockUpdate {
     void testStockDiscount(){
         product = modifyProductService.discountStock(product, 5);
         assertEquals(5L, product.getStock());
+    }
+
+    @Test
+    void testStockDiscountError() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            modifyProductService.discountStock(product, 15);
+        });
+        assertEquals("Stock insuficiente", exception.getMessage());
     }
 }
