@@ -1,11 +1,14 @@
 package tpi.backend.e_commerce.services.order;
 
+import java.util.List;
 import java.util.Optional;
 
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import tpi.backend.e_commerce.dto.orderDTO.ResponseOrderDto;
 import tpi.backend.e_commerce.mapper.OrderMapper;
 import tpi.backend.e_commerce.models.User;
 import tpi.backend.e_commerce.repositories.IOrderRepository;
@@ -38,8 +41,18 @@ public class FindOrderService implements IFindOrderService{
             );
         }
 
-        return ResponseEntity.ok(OrderMapper.toDtoList(orderRepository.findOrdersByUserEmail(email)));
+        List<ResponseOrderDto> ordersOfUser = getOrdersOfUser(email);
 
+        if (ordersOfUser.isEmpty()) {
+            return ResponseEntity.ok("No se han encontrado pedidos. ¡Explora nuestros productos y realiza tu primera compra!");
+        }
+
+        return ResponseEntity.ok(ordersOfUser);
+
+    }
+
+    private List<ResponseOrderDto> getOrdersOfUser(String email) {
+        return OrderMapper.toDtoList(orderRepository.findOrdersByUserEmail(email));
     }
     
 }
