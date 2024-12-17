@@ -27,7 +27,8 @@ public class SecurityConfiguration {
     private final UserService userService;
     private final ForbiddenHandler forbiddenHandler;
 
-    @Bean
+    @SuppressWarnings("removal")
+@Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request

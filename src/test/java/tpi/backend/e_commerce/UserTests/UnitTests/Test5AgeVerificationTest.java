@@ -19,6 +19,7 @@ import tpi.backend.e_commerce.dto.auth.request.SignUpRequest;
 public class Test5AgeVerificationTest {
     private static Validator validator;
 
+
     @BeforeAll
     static void setUp() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
