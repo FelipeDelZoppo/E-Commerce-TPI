@@ -5,25 +5,17 @@ import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import tpi.backend.e_commerce.dto.ProductDTO.CreateProductDTO;
-import tpi.backend.e_commerce.repositories.IBrandRepository;
-import tpi.backend.e_commerce.repositories.IProductRepository;
-import tpi.backend.e_commerce.repositories.ISubCategoryRepository;
-import tpi.backend.e_commerce.services.product.interfaces.ISaveProductService;
 
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.when;
 
 @SpringBootTest
-public class Test29RegisterProductWithPriceUpToZero {
+public class Test29RegisterProductWithPriceUpToOne {
 
     private static Validator validator;
 
