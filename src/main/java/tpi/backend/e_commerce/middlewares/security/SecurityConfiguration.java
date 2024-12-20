@@ -32,6 +32,7 @@ public class SecurityConfiguration {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/auth/**","/email/**","/v1/api-docs", "/swagger-resources/**", 
+                                "/metabase/dashboard-url", "/metabase/dashboard-sales-url","/metabase/dashboard-clients-url",
                                 "/user/**" ,"/orders", "/reports/**", //Esta linea sera de los endpoints que deben estar autorizados (Estan ahi para probarlos)
                                 "/swagger-ui/**", "/v3/api-docs/**", "/github/issues").permitAll()
                         .requestMatchers(HttpMethod.GET,"/product", "/brand", "/category",
