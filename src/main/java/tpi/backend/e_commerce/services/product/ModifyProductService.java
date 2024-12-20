@@ -9,7 +9,7 @@ import tpi.backend.e_commerce.services.product.interfaces.IModifyProductService;
 public class ModifyProductService implements IModifyProductService {
 
     @Override
-    public Product discountStock(Product product, Integer discount) {
+    public Product discountStock(Product product, Integer discount) throws RuntimeException{
         if (product.getStock() < discount) {
             throw new RuntimeException("No hay suficiente stock del producto con id " + product.getId());
         }

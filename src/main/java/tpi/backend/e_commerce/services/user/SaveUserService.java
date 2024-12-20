@@ -1,4 +1,4 @@
-package tpi.backend.e_commerce.services.JwtService;
+package tpi.backend.e_commerce.services.user;
 
 
 
@@ -13,7 +13,8 @@ import tpi.backend.e_commerce.enums.Role;
 import tpi.backend.e_commerce.mapper.UserMapper;
 import tpi.backend.e_commerce.models.User;
 import tpi.backend.e_commerce.repositories.IUserRepository;
-import tpi.backend.e_commerce.services.JwtService.interfaces.ISaveUserService;
+import tpi.backend.e_commerce.services.JwtService.JwtService;
+import tpi.backend.e_commerce.services.user.interfaces.ISaveUserService;
 import tpi.backend.e_commerce.validation.Validation;
 
 @Service
@@ -47,9 +48,10 @@ public class SaveUserService implements ISaveUserService{
         }
 
         // Si no hay errores, guarda al usuario en la BD y retorna el JWT
-        User user = UserMapper.toEntity(userDto, passwordEncoder.encode(userDto.getPassword()), Role.ADMIN);
+        User user = UserMapper.toEntity(userDto, passwordEncoder.encode(userDto.getPassword()));
+        user.setRole(Role.ADMIN); //HARDACODEADO, este endpoint se usara para probar la app
         userRepository.save(user);
-        String jwt = jwtService.generateToken(user);
+        String jwt = jwtService.generateToken(user, user.getRole());
         return ResponseEntity.ok(UserMapper.toJwtDto(user, jwt));
     }
 }

@@ -1,4 +1,4 @@
-package tpi.backend.e_commerce.services.JwtService;
+package tpi.backend.e_commerce.services.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +9,7 @@ import java.util.Optional;
 import tpi.backend.e_commerce.mapper.UserMapper;
 import tpi.backend.e_commerce.models.User;
 import tpi.backend.e_commerce.repositories.IUserRepository;
-import tpi.backend.e_commerce.services.JwtService.interfaces.IDeleteUserService;
+import tpi.backend.e_commerce.services.user.interfaces.IDeleteUserService;
 import tpi.backend.e_commerce.validation.Validation;
 
 @Service

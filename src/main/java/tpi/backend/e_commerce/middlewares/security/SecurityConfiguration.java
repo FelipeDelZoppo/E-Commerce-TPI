@@ -2,6 +2,7 @@ package tpi.backend.e_commerce.middlewares.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -16,7 +17,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import lombok.RequiredArgsConstructor;
-import tpi.backend.e_commerce.services.JwtService.UserService;
+import tpi.backend.e_commerce.services.user.UserService;
 
 @Configuration
 @EnableWebSecurity
@@ -24,16 +25,24 @@ import tpi.backend.e_commerce.services.JwtService.UserService;
 public class SecurityConfiguration {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final UserService userService;
+    private final ForbiddenHandler forbiddenHandler;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/auth/**", "/auth/signin","/user/**","/email/**", "/product/**", "/brand/**", "/category/**",
-                                "/subcategory/**","/orders/**", "/stock-entry/**","/v1/api-docs", "/swagger-resources/**",
-                                "/swagger-ui/**", "/v3/api-docs/**",
-                                "/swagger-ui.html")
-                        .permitAll().anyRequest().authenticated())
+                        .requestMatchers("/auth/**","/email/**","/v1/api-docs", "/swagger-resources/**", 
+                                "/metabase/dashboard-url", "/metabase/dashboard-sales-url","/metabase/dashboard-clients-url",
+                                "/user/**" ,"/orders", "/reports/**", //Esta linea sera de los endpoints que deben estar autorizados (Estan ahi para probarlos)
+                                "/swagger-ui/**", "/v3/api-docs/**", "/github/issues").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/product", "/brand", "/category",
+                                "/subcategory","/orders/*").permitAll()
+                        .requestMatchers( "/product/**", "/brand/**", "/category/**",
+                                "/subcategory/**", "/stock-entry/**")
+                        .hasRole("ADMIN")
+                        .anyRequest()
+                        .authenticated())
+                .httpBasic(exception -> exception.authenticationEntryPoint(forbiddenHandler))
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
                 .authenticationProvider(authenticationProvider()).addFilterBefore(
                         jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

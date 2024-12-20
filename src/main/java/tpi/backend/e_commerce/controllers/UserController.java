@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
 import tpi.backend.e_commerce.dto.auth.request.UpdateUserDto;
-import tpi.backend.e_commerce.services.JwtService.interfaces.IDeleteUserService;
-import tpi.backend.e_commerce.services.JwtService.interfaces.IFindUserService;
-import tpi.backend.e_commerce.services.JwtService.interfaces.IUpdateUserService;
+import tpi.backend.e_commerce.services.user.interfaces.IDeleteUserService;
+import tpi.backend.e_commerce.services.user.interfaces.IFindUserService;
+import tpi.backend.e_commerce.services.user.interfaces.IUpdateUserService;
 
 @RestController
 @RequestMapping("/user")

@@ -9,7 +9,7 @@ import tpi.backend.e_commerce.dto.auth.request.SignUpRequest;
 
 
 public interface IAuthenticationService {
-    ResponseEntity<?> signup(SignUpRequest request, BindingResult result);
+    ResponseEntity<?> signup(SignUpRequest request, BindingResult result, String authorization);
 
     ResponseEntity<?> signin(SignInRequest request, BindingResult result);
 }
